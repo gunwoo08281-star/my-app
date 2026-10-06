@@ -34,7 +34,8 @@ export async function connectDB() {
   if (cached.conn) return cached.conn
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI)
+    // A broken Atlas hostname should fail quickly so the local notice store can take over.
+    cached.promise = mongoose.connect(MONGODB_URI, { serverSelectionTimeoutMS: 3000 })
   }
 
   try {
