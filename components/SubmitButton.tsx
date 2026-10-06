@@ -11,3 +11,4 @@ export function SubmitButton({ label }: { label: string }) {
       {pending ? "저장 중..." : label}
     </Button>
   );
+}
